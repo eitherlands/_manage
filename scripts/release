@@ -91,6 +91,7 @@ main ()
 
     git config user.name "escapace"
     git config user.email "security@escapace.com"
+    git config gpg.format openpgp
     git config user.signingkey 0x90A65F3603169487
 
     build release
@@ -174,6 +175,7 @@ onExit ()
     git config --unset user.name
     git config --unset user.email
     git config --unset user.signingkey
+    git config --unset gpg.format
 
     for directory in "${CLEANUP_DIRECTORIES[@]}"
     do
