@@ -71,3 +71,5 @@ jobs:
       run: |
         gh release create v${GITHUB_REF:11} \
           --repo "${GITHUB_REPOSITORY}"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
