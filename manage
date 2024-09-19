@@ -33,7 +33,7 @@ else
     exit 1
 fi
 
-MANAGE_VERSION="v3.9.1"
+MANAGE_VERSION="v3.9.2"
 
 MANAGE_IS_CI () {
     # Returns 0 if the current environment
@@ -932,7 +932,7 @@ MANAGE_OS () {
 }
 
 MANAGE_GET_YQ() {
-    local version="4.29.2"
+    local version="4.44.3"
     local url
     local binary="${MANAGE_BIN}/yq"
     local localVersion
@@ -943,7 +943,7 @@ MANAGE_GET_YQ() {
     if [[ -f "${binary}" ]]
     then
         localVersion="$("${binary}" --version 2>/dev/null)" || download=true
-        localVersion="${localVersion##"yq (https://github.com/mikefarah/yq/) version "}"
+        localVersion="${localVersion##"yq (https://github.com/mikefarah/yq/) version v"}"
 
         if [[ "${localVersion}" == "${version}" ]]
         then
@@ -964,7 +964,7 @@ MANAGE_GET_YQ() {
 
         chmod +x "${MANAGE_BIN}/yq"
 
-        [[ "$("${MANAGE_BIN}/yq" --version)" == "yq (https://github.com/mikefarah/yq/) version ${version}" ]] &> /dev/null || MANAGE_ERROR yq "${url}"
+        [[ "$("${MANAGE_BIN}/yq" --version)" == "yq (https://github.com/mikefarah/yq/) version v${version}" ]] &> /dev/null || MANAGE_ERROR yq "${url}"
     fi
 }
 
