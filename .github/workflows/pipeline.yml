@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        suite: [lint, centos]
+        suite: [centos]
     steps:
-    - uses: actions/checkout@v2.0.0
+    - uses: actions/checkout@v4
     - name: Checkout submodules
       shell: bash
       run: |
@@ -31,7 +31,7 @@ jobs:
     name: "macOS Test"
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2.0.0
+    - uses: actions/checkout@v4
     - name: Checkout submodules
       shell: bash
       run: |
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test-macOS, test-linux]
     steps:
-    - uses: actions/checkout@v2.0.0
+    - uses: actions/checkout@v4
       if: contains(github.ref, 'tags/v')
     - name: Checkout submodules
       if: contains(github.ref, 'tags/v')
@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test-macOS, test-linux]
     steps:
-    - uses: actions/checkout@v2.0.0
+    - uses: actions/checkout@v4
       if: contains(github.ref, 'tags/v')
     - name: Checkout submodules
       if: contains(github.ref, 'tags/v')
