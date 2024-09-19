@@ -27,24 +27,6 @@ jobs:
         ./manage ci
       env:
         TEST_SUITE: ${{ matrix.suite }}
-  # test-macOS:
-  #   name: "macOS Test"
-  #   runs-on: macos-latest
-  #   steps:
-  #   - uses: actions/checkout@v4
-  #   - name: Checkout submodules
-  #     shell: bash
-  #     run: |
-  #       auth_header="$(git config --local --get http.https://github.com/.extraheader)"
-  #       git submodule sync --recursive
-  #       git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
-  #   - name: manage ci
-  #     run: |
-  #       brew install bash gnu-sed gnupg
-  #       ./manage trust-escapace
-  #       ./manage ci
-  #     env:
-  #       TEST_SUITE: osx
   docker:
     name: "Docker build and push"
     runs-on: ubuntu-latest
@@ -73,7 +55,7 @@ jobs:
   release:
     name: "Github Release"
     runs-on: ubuntu-latest
-    needs: [test-macOS, test-linux]
+    needs: [test-linux]
     steps:
     - uses: actions/checkout@v4
       if: contains(github.ref, 'tags/v')
